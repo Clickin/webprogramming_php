@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>관리자 페이지</title>
+
+        <!-- 부트스트랩 css import -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid">
+            ::before
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li>
+                            <a href="#movie_list">영화관리</a>
+                        </li>
+                        <li>
+                            <a href="#member_lst">회원관리</a>
+                        </li>
+                </div>
+            </div>
+            ::after
+        </div>
+        <div class="container-fluid">
+            <a name="#movie_list">
+                <h1 class="page-header">영화 관리</h1>
+            </a>
+            
+            <table class="table table-hover">
+                <thead>
+                    <th>선택</th>
+                    <th>이름</th>
+                    <th>상영일자</th>
+                    <th>상영시간</th>
+                    <th>상영관</th>
+                    <th>예매현황</th>
+                </thead>
+                <!-- 샘플 영화 목록입니다 -->
+                <tbody>
+                    <tr><input type="checkbox" value="remove_select(1)"></tr>
+                    <tr>저스티스 리그</tr>
+                    <th>2017년 12월 5일</th>
+                    <tr>14:50</tr>
+                    <tr>1관</tr>
+                    <th>100석</th>
+                </tbody>
+            </table>
+            <hr>
+
+            <a name="member_list">
+                <h1 class="page-header">회원 관리</h1>
+            </a>
+            <table class="table table-striped">
+                <thead>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>예매횟수</th>
+                </thead>
+                <tbody>
+                    <tr>test</tr>
+                    <tr>홍길동</tr>
+                    <th>4</th>
+                </tbody>
+            </table>
+            <hr>
+
+            <button type="button" class="btn btn-primary pull-right" onclick="location.href='addMovies.php'">영화 추가</button>
+            <button type="button" class="btn btn-danger pull-right" onclick="del_movies()">영화 삭제</button>
+        </div>
+
+        <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
