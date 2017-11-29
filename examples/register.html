@@ -1,0 +1,152 @@
+﻿<html>
+<head>
+    <title>Register</title>
+<script>
+
+ function check(){  
+   
+   //아이디 확인
+   if(id.value==""){ alert("아이디를 입력해주세요!");  id.focus(); return false;}
+
+   //핸드폰번호 확인
+   var i, j=0;
+   var p1=phone.value;
+   var p2=phone2.value;
+
+   if(p1=="") {alert("핸드폰 앞자리를 입력하세요!"); phone.focus(); return false;}
+   if(p2=="") {alert("핸드폰 뒷자리를 입력하세요!"); phone2.focus(); return false;}
+   if(p1.length>0){
+    for(i=0; i<p1.length;i++){
+     if(p1.charAt(i)<'0' || p1.charAt(i)>'9')
+	{alert("숫자만 입력하세요"); phone.focus(); return false;}
+    }
+   }
+
+    if(p2.length>0){
+    for(j=0; j<p2.length;j++){
+    if(p2.charAt(j)<'0' || p2.charAt(j)>'9')
+	{alert("숫자만 입력하세요"); phone2.focus(); return false;}
+    }
+   }
+
+   //이메일 확인
+  if(email.value==""){ alert("이메일을 입력해주세요!");  email.focus(); return false;}
+  if(mailadd.value=="s") {alert("이메일주소를 선택해주세요!");  emailaddress.focus(); return false;}
+
+   //이용약관 확인
+    if(!my.agree1.checked) {alert("이용약관에 동의하셔야 합니다."); my.agree1.focus(); return false;}
+    if(!my.agree2.checked) {alert("개인정보 수집 및 이용에 동의하셔야 합니다.");  my.agree2.focus(); return false;}
+
+
+  else submit();
+    
+    
+}
+
+  //비밀번호 확인
+ function pwcheck(){
+  var status=document.getElementById("msg");
+  if(pw.value==pw1.value) status.innerHTML="";
+  else status.innerHTML="<font size=2px color='red'>비밀번호가 일치하지 않습니다</font>";
+}
+
+ //약관 모든항목 동의
+ function allcheck(){
+  if(my.agree.checked==true) 
+ {my.agree1.checked=true; my.agree2.checked=true; my.agree3.checked=true; }
+}
+
+
+</script>
+
+
+</head>
+
+<body>
+ 
+<h3>회원가입</h3></br>
+<hr/>
+  
+    <form name="register" >
+    <br/>
+    <fieldset>
+    <table>
+        <tr>
+          <td>아이디</td>
+          <td><input type="text" size="30" name="id" id="id">&nbsp;<button type="button">중복확인</button></td>
+        </tr>
+        <tr>
+          <td>비밀번호</td>
+          <td><input type="password" size="30" name="pw" id="pw">&nbsp;(대소문자 구분)</td>
+        </tr>
+       <tr>
+          <td>비밀번호확인</td>
+          <td><input type="password" size="30" name="pw1" id="pw1" onkeyup="pwcheck()"><em id="msg"></em></td> 
+        </tr>
+       <tr>
+          <td>이름</td>
+          <td><input type="text" size="30" name="name"></td>
+       </tr>
+       <tr>
+          <td>핸드폰번호</td>
+          <td><select name="phone">
+	  <option value="010" selected >010</option>
+	  <option value="011">011</option>
+	  <option value="016">016</option>
+	  <option value="017">017</option>
+	  <option value="018">018</option>
+	  <option value="019">019</option>
+	  </select>&nbsp;-&nbsp;<input type="text" size="5" id="phone">&nbsp;-&nbsp;<input type="text" size="5" id="phone2">
+         </td>
+        </tr>
+     <tr>
+          <td>이메일</td>
+          <td><input type="text" size="10" name="email" id="email">@
+	<select name="emailaddress" id=mailadd>
+	  <option value="s" selected>선택하세요</option>
+	  <option value="naver">naver.com</option>
+	  <option value="daum">daum.net</option>
+	  <option value="skku">skku.edu</option>
+	  <option value="nate">nate.com</option>
+	  <option value="yahoo">yahoo.com</option>
+	  <option value="live">live.com</option>
+	  </select>
+         </td>
+        </tr>
+
+    </table>
+      </fieldset>
+</form>
+</br></br></br></br>
+
+<h3>약관 동의</h3></br>
+
+<form name="my">
+<hr/>
+<input type="checkbox" id="agree" onclick="allcheck()">모든 약관에 동의하기
+<hr/>
+<div="content">
+ <legend>[필수] 이용약관 동의</legend>
+            <p><iframe src="inner.html" width="900" height=200"></iframe></p></div>
+ <p>이용약관에 동의하십니까?<input type="checkbox" id="agree1">동의함</p>
+<hr/>
+
+<div="content2">
+ <legend>[필수] 개인정보 수집 및 이용 동의</legend>
+            <p><iframe src="inner2.html" width="900" height=200"></iframe></p></div>
+ <p>개인정보 수집 및 이용에 동의하십니까?<input type="checkbox" id="agree2" >동의함</p>
+<hr/>
+<div="content3">
+ <legend>[선택] 영화정보 수신 동의</legend>
+            <p><iframe src="inner3.html" width="900" height=100"></iframe></p></div>
+ <p>이메일 수신을 동의 하십니까?<input type="checkbox" id="agree3">동의함</p>
+
+
+
+
+</form>
+<input type="button" onclick="check()" value="회원가입하기">
+
+</body>
+
+</html>
