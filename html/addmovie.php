@@ -1,8 +1,8 @@
 <?php
 session_start();
 if ($_SESSION['user_id'] != "admin") {
-    echo '<script>alert("관리자 계정이 아닙니다.");</script>';
-    header("location:index.php");
+    echo "<script>alert(\"관리자 계정이 아닙니다.\");</script>";
+    echo "<meta http-equiv='refresh' content='0;url=index.php'>";
 }
 ?>
 <html>

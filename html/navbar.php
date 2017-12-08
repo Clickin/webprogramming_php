@@ -38,7 +38,13 @@
                 echo "</li>";
                 }
             ?>
-            
+            <?php 
+                if (!empty($_SESSION)) {
+                    echo '<li class="nav-item"';
+                    echo '<a class="nav-link" href="./logout.php">로그아웃</a>';
+                    echo "</li>";
+                }
+            ?>
             </ul>
         </div>
     </nav>
