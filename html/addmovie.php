@@ -20,24 +20,24 @@ if ($_SESSION['user_id'] != "admin") {
             <form class="form" id="addmovie" role="form" enctype="multipart/form-data" method="post" action="addmovie_ok.php">
                 <div class="from-group">
                     <label for="name">영화이름</label>
-                    <input class="form-control" id="name" type="text" placeholder="이름">
+                    <input class="form-control" name="name" type="text" placeholder="이름">
                     
                 </div>
                 
                 <div class="from-group">
                     <label for="day">상영일자</label>
-                    <input class="form-control" id="day" type="date" placeholder="날짜">
+                    <input class="form-control" name="day" type="date" placeholder="날짜">
                     
                 </div>
                 
                 <div class="from-group">
                     <label for="time">상영시간</label>
-                    <input class="form-control" id="time" type="time" placeholder="시간">
+                    <input class="form-control" name="time" type="time" placeholder="시간">
                 </div>
                 
                 <div class="from-group">
                     <label class="" for="theater">상영관</label>
-                    <select class="form-control" id="theater">
+                    <select class="form-control" name="theater">
                         <option value="1">1관</option>
                         <option value="2">2관</option>
                         <option value="3">3관</option>
@@ -46,7 +46,7 @@ if ($_SESSION['user_id'] != "admin") {
                 
                 <div class="form-group">
                         <label for="picture">영화 사진</label>
-                        <input type="file" id="pic" accept="image/.jpg,.jpeg,.png">
+                        <input type="file" name="pic" accept="image/.jpg,.jpeg,.png">
                 </div>
 
                 <div>
