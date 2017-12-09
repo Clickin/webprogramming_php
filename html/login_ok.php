@@ -9,21 +9,23 @@ if (isset($_POST['login'])) {
     }
 }
 $id = $_POST['user_id'];
-$password = password_hash($_POST['user_pw'], PASSWORD_DEFAULT);
-$sql = "SELECT password FROM account WHERE id = $id";
+$password = $_POST['user_pw'];
+$sql = "SELECT * FROM account WHERE id = '$id'";
 $result = $con->query($sql);
-$row = mysqli_fetch_assoc($result);
-if ($result->num_rows != 0 && password_verify($password, $row['password'] )) {
+$row = $result->fetch_array(MYSQLI_ASSOC);
+if (password_verify($password, $row['password'] )) {
     $_SESSION['is_logged'] = 'YES';
     $_SESSION['user_id'] = $id;
     mysqli_close($con);
     echo "<script>history.go(-2);</script>";
-    exit;
+    exit();
 }
 else {
     $error = "아이디 혹은 비밀번호가 일치하지 않습니다.";
     mysqli_close($con);
-    
+    //echo "<script>history.back();</script>";
+    echo $password."<br>";
+    echo $row['password'];
 }
 echo "<script>alert('$error')</script>";
 
