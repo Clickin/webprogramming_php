@@ -30,12 +30,11 @@ else {
     
     $sql = $sql."VALUES ('$id','$password','$phone','$name', NULL);";
     $result = $con->query($sql);
-    echo $sql;
     if ($result === true) {
         $_SESSION['is_logged'] = 'YES';
         $_SESSION['user_id'] = $id;
         mysqli_close($con);
-        echo "<script>history.go(-2);</script>";
+        echo '<meta http-equiv="refresh" content="0;url=./index.php">';
         
     }
     else {

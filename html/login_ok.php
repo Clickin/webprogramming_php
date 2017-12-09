@@ -23,9 +23,8 @@ if (password_verify($password, $row['password'] )) {
 else {
     $error = "아이디 혹은 비밀번호가 일치하지 않습니다.";
     mysqli_close($con);
-    //echo "<script>history.back();</script>";
-    echo $password."<br>";
-    echo $row['password'];
+    echo "<script>history.back();</script>";
+    
 }
 echo "<script>alert('$error')</script>";
 

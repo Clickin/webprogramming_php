@@ -55,8 +55,6 @@
     
         var password = document.getElementById("user_pw").value;
         var passwordCheck = document.getElementById("user_pw2").value;
-        console.log(password);
-        console.log(passwordCheck);
         var same = "<span style='color:green;'>비밀번호가 일치합니다</span>";
         var diff = "<span style='color:red;'>비밀번호가 일치하지 않습니다</span>";
         
