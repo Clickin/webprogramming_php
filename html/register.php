@@ -1,26 +1,20 @@
-<?php
-session_start();
-if ($_SESSION['user_id'] != "admin") {
-    echo "<script>alert(\"관리자 계정이 아닙니다.\");</script>";
-    echo "<meta http-equiv='refresh' content='0;url=index.php'>";
-}
-
-?>
 <html>
+    
     <?php 
-    $title = "영화 추가 페이지";
+    $title = "회원가입";
     include("navbar.php");?>
+        
     <body>
         
         <div class="container">
             <div class="page-header">
-                <h1>영화 추가</h1>
+                <h1>회원가입</h1>
             </div>
 
-            <form class="form" id="addmovie" role="form" enctype="multipart/form-data" method="post" action="upload_movie.php">
+            <form class="form" id="register" role="form" method="post" action="signup.php">
                 <div class="from-group">
-                    <label for="name">영화이름</label>
-                    <input class="form-control" id="name" type="text" placeholder="이름">
+                    <label for="user_id">아이디</label>
+                    <input class="form-control" id="user_id" type="text" placeholder="아이디">
                     
                 </div>
                 
@@ -56,6 +50,3 @@ if ($_SESSION['user_id'] != "admin") {
             
             </form>
         </div>
-        
-    </body>
-</html>
