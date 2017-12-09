@@ -36,7 +36,7 @@ else {
         $_SESSION['user_id'] = $id;
         mysqli_close($con);
         echo "<script>history.go(-2);</script>";
-        exit;
+        
     }
     else {
         $error = $con->error;
@@ -44,6 +44,7 @@ else {
     }
 
 }
-echo $error;
+echo "<script>alert('$error');</script>";
+echo "<script>history.back();</script>";
 exit;
 ?>
