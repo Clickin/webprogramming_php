@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <?php
 session_start();
 include("connect.php");
@@ -8,11 +9,11 @@ if (isset($_POST['login'])) {
     }
 }
 $id = $_POST['user_id'];
-$password = password_hash($_POST['user_pw']);
+$password = password_hash($_POST['user_pw'], PASSWORD_DEFAULT);
 $sql = "SELECT password FROM account WHERE id = $id";
 $result = $con->query($sql);
 $row = mysqli_fetch_assoc($result);
-if ($result->num_rows = 1 && password_verify($password, $row['password'] )) {
+if ($result->num_rows != 0 && password_verify($password, $row['password'] )) {
     $_SESSION['is_logged'] = 'YES';
     $_SESSION['user_id'] = $id;
     mysqli_close($con);
@@ -25,6 +26,6 @@ else {
     
 }
 echo "<script>alert('$error')</script>";
-echo "<script>history.back();</script>";
+
 exit;
 ?>

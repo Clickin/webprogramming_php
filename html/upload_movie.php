@@ -17,15 +17,16 @@ if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
 
 }
 $sql = "INSERT INTO movies(screen_date, screen_time, movie_name, theater_uid, pic)";
-$sql = $sql . "VALUES ($day,$time,$name,$theater,$pic_name)";
+$sql = $sql . "VALUES ($day,$time,$name,$theater,$pic_name);";
 $result = $con->query($sql);
 $row = mysqli_fetch_assoc($result);
-if ($result->num_rows = 1) {
+if ($result === true) {
     mysqli_close($con);
     $uploaddir = "/pic";
     $uploadfile = $uploaddir. basename($_FILES['userfile']['name']);
     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
         echo "파일이 유효하고, 성공적으로 업로드 되었습니다.\n";
+        exit;
     } else {
         $error = "파일 업로드 실패";
     }
