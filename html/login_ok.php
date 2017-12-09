@@ -16,12 +16,15 @@ if ($result->num_rows = 1 && password_verify($password, $row['password'] )) {
     $_SESSION['is_logged'] = 'YES';
     $_SESSION['user_id'] = $id;
     mysqli_close($con);
-    echo '<meta http-equiv="refresh" content="0; url=./index.php"></meta>';
+    echo "<script>history.go(-2);</script>";
+    exit;
 }
 else {
     $error = "아이디 혹은 비밀번호가 일치하지 않습니다.";
     mysqli_close($con);
-    echo $error;
-    echo "<script>history.back();</script>";
+    
 }
+echo "<script>alert('$error')</script>";
+echo "<script>history.back();</script>";
+exit;
 ?>
