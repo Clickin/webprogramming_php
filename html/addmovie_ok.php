@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <?php
 session_start();
 include("connect.php");
@@ -11,8 +12,8 @@ $name = $_POST['name'];
 $day = $_POST['day'];
 $time = $_POST['time'];
 $theater = $_POST['theater'];
-$pic_name = $_FILE['userfile']['name'];
-if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+$pic_name = basename($_FILES['pic']['name']);
+if (is_uploaded_file($_FILES['pic']['tmp_name'])) {
     $error = "사진이 업로드되지 않았습니다.";
 
 }
@@ -21,11 +22,10 @@ $sql = $sql . "VALUES ('$day','$time','$name','$theater','$pic_name');";
 $result = $con->query($sql);
 if ($result === true) {
     mysqli_close($con);
-    $uploaddir = "/pic";
-    $uploadfile = $uploaddir. basename($_FILES['userfile']['name']);
-    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-        echo "파일이 유효하고, 성공적으로 업로드 되었습니다.\n";
-        mysqli_close($con);
+    $uploaddir = './pic/';
+    $uploadfile = $uploaddir. basename($_FILES['pic']['name']);
+    if (move_uploaded_file($_FILES['pic']['tmp_name'], $uploadfile)) {
+        echo "<script>history.back();</script>";
         exit();
     } else {
         $error = "파일 업로드 실패";
@@ -38,6 +38,5 @@ else {
     
 }
 echo "<script>alert('$error')</script>";
-echo "<script>history.back();</script>";
 exit;
 ?>

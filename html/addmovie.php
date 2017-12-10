@@ -46,7 +46,7 @@ if ($_SESSION['user_id'] != "admin") {
                 
                 <div class="form-group">
                         <label for="picture">영화 사진</label>
-                        <input type="file" name="pic" accept="image/.jpg,.jpeg,.png">
+                        <input type="file" name="pic" accept="image/.jpg|image/.jpeg,|image/.png">
                 </div>
 
                 <div>
