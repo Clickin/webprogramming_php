@@ -2,12 +2,7 @@
 <?php include("navbar.php");
 $title = "로그인";
 ?>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel='stylesheet' type='text/css' href='./css/login.css'>
-</head>
+<link rel='stylesheet' type='text/css' href='./css/login.css'>
 <body>
     <div class="modal-dialog">
         <div class="loginmodal-container">

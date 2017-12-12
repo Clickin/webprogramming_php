@@ -1,0 +1,16 @@
+@font-face {
+    font-family: Nanum;
+    src: local("Nanumgothic"),
+    local("Nanumgothic"),
+    url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+    font-weight: bold;
+}
+body {
+    font-family:"Nanum gothic", "Arial", sans-serif;
+}
+.navbar {padding-top:5px; min-height:30px !important; width: 100%;}
+.nav-item {
+    padding:5px;
+    font-size:20px;
+    font-family:"Nanumgothic", "Arial", serif;
+}
