@@ -20,7 +20,7 @@
         
     </div>
     </nav>
-    <div class="col-sm-2 col-md-1 sidebar" style="background-color:#F5F5F5; height:100%">
+    <div class="col-sm-2 col-md-2 sidebar" style="background-color:#F5F5F5; height:100%">
         <ul class="nav nav-sidebar">
         <li class="nav-item">
             <a class="nav-link" href="./reservation.php">영화예매</a>

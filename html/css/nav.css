@@ -6,7 +6,7 @@
     font-weight: bold;
 }
 body {
-    font-family:"Nanum gothic", "Arial", sans-serif;
+    font-family:"Nanum gothic", "맑은고딕", 'Malgun Gothic', "Arial", sans-serif;
 }
 .navbar {padding-top:5px; min-height:30px !important; width: 100%;}
 .nav-item {

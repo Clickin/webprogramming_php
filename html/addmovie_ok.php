@@ -20,13 +20,25 @@ if (is_uploaded_file($_FILES['pic']['tmp_name'])) {
 $sql = "INSERT INTO movies(screen_date, screen_time, movie_name, theater_uid, pic) ";
 $sql = $sql . "VALUES ('$day','$time','$name','$theater','$pic_name');";
 $result = $con->query($sql);
-if ($result === true) {
+$sql = "SELECT MAX(movie_uid) FROM movies";
+$result = $con->query($sql);
+$movie_uid = $result->fetch_array(MYSQLI_ASSOC);
+$movie_uid = $movie_uid['MAX(movie_uid)'];
+
+for ($i = 0; $i < 156; $i++) {
+    $sql = "INSERT INTO seats(seat_uid, theator_uid, movie_uid, valid)";
+    $sql = $sql. "VALUES ('$i','$theater','$movie_uid','0')";
+    $con->query($sql);
+    
+}
+
+if (!empty($result)) {
     mysqli_close($con);
     $uploaddir = './pic/';
     $uploadfile = $uploaddir. basename($_FILES['pic']['name']);
     if (move_uploaded_file($_FILES['pic']['tmp_name'], $uploadfile)) {
-        echo "<script>history.back();</script>";
-        exit();
+        //echo "<script>history.back();</script>";
+        //exit();
     } else {
         $error = "파일 업로드 실패";
     }
