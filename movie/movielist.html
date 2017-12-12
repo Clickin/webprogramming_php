@@ -1,0 +1,65 @@
+<html>
+
+<head>
+
+	<script>
+	 function winOpen(s){
+	if(s==1)
+	{myWin=window.open("movie1.html", "new", "width=700, height=500");}
+	if(s==2)
+	{myWin=window.open("movie2.html", "new", "width=700, height=500");}
+	if(s==3)
+	{myWin=window.open("movie3.html", "new", "width=700, height=500");}
+	if(s==4)
+	{myWin=window.open("movie4.html", "new", "width=700, height=500");}
+
+}
+
+	</script>
+
+	<style>
+	 #movielist{border: 2px solid gray;
+		margin: 10px;
+		display: inline-block;	
+	}
+
+	#psize {margin: 3px; padding: 0px; width="10" height="10"}
+
+	</style>
+</head>
+<body>
+
+
+
+	<form>
+	 <div id="movielist">
+	<img id src="꾼.jpg" width="180" height="270"><br/>		
+	<img id ="psize" src="15.png" > <strong>꾼</strong><br/></br>
+	<input type="button" value="상세보기" onclick="winOpen(1)">
+	
+	</div>
+
+	<div id="movielist">
+	<img src="강철비.jpg" width="180" height="270"><br/>
+	<img id ="psize"  src="15.png"> <strong>강철비</strong><br/></br>
+	<input type="button" value="상세보기" onclick="winOpen(2)">
+	</div>
+
+	<div id="movielist">
+	<img src="기억의밤.jpg" width="180" height="270"><br/>
+	<img id ="psize"  src="15.png"> <strong>기억의 밤</strong><br/></br>
+	<input type="button" value="상세보기" onclick="winOpen(3)">
+	</div>
+
+
+	<div id="movielist">
+	<img src="오리엔트특급살인.jpg"  width="180" height="270"><br/>
+	<img id ="psize"  src="12.png"> <strong>오리엔트 특급살인</strong><br/></br>
+	<input type="button" value="상세보기" onclick="winOpen(4)">
+	</div>
+
+
+
+
+</body>
+</html>
