@@ -5,9 +5,9 @@ if ($_SESSION['user_id'] != "admin") {
     echo "<meta http-equiv='refresh' content='0;url=index.php'>";
 }
 include("connect.php");
-$sql = "SELECT * FROM movies";
+$sql = "SELECT movies.movie_uid, movie_name, screen_date, screen_time, COUNT(valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid ";
 $movie_result = $con->query($sql);
-$sql = "SELECT * FROM account";
+$sql = "SELECT id, phone, name, COUNT(reserve_uid) FROM account LEFT JOIN reservation ON account.id = reservation.user_id ORDER BY id";
 $account_result = $con->query($sql);
 
 ?>
@@ -37,7 +37,7 @@ $account_result = $con->query($sql);
                     <td> <?php echo $row['screen_date'];?></td>
                     <td> <?php echo $row['screen_time'];?></td>
                     <td> <?php echo $row['theater_uid'];?></td>
-                    <td> <?php echo $count_movie[$row['movie_uid']];?></td>
+                    <td> <?php echo $row['COUNT(valid)'];?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -64,7 +64,7 @@ $account_result = $con->query($sql);
                     <td><?php echo $row['id'];?></td>
                     <td><?php echo $row['name'];?></td>
                     <td><?php echo $row['phone'];?></td>
-                    <td><?php echo $row['reserve_cnt'];?></td>
+                    <td><?php echo $row['COUNT(reserve_uid)'];?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

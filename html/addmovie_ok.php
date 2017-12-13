@@ -37,8 +37,8 @@ if (!empty($result)) {
     $uploaddir = './pic/';
     $uploadfile = $uploaddir. basename($_FILES['pic']['name']);
     if (move_uploaded_file($_FILES['pic']['tmp_name'], $uploadfile)) {
-        //echo "<script>history.back();</script>";
-        //exit();
+        echo "<script>history.back();</script>";
+        exit();
     } else {
         $error = "파일 업로드 실패";
     }
@@ -50,5 +50,5 @@ else {
     
 }
 echo "<script>alert('$error')</script>";
-exit;
+exit();
 ?>

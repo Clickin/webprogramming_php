@@ -26,9 +26,9 @@ else if ($checked != "Yes") {
     $error = "약관에 동의하지 않으셨습니다";
 }
 else {
-    $sql = "INSERT INTO account (id, password, phone, name, reserve_uid) ";
+    $sql = "INSERT INTO account (id, password, phone, name) ";
     
-    $sql = $sql."VALUES ('$id','$password','$phone','$name', NULL);";
+    $sql = $sql."VALUES ('$id','$password','$phone','$name');";
     $result = $con->query($sql);
     if ($result === true) {
         $_SESSION['is_logged'] = 'YES';
