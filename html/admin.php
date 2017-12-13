@@ -1,20 +1,18 @@
-<?php
-session_start();
-if ($_SESSION['user_id'] != "admin") {
-    echo "<script>alert(\"관리자 계정이 아닙니다.\");</script>";
-    echo "<meta http-equiv='refresh' content='0;url=index.php'>";
-}
-include("connect.php");
-$sql = "SELECT movies.movie_uid, movie_name, screen_date, screen_time, COUNT(valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid WHERE valid = 0";
-$movie_result = $con->query($sql);
-$sql = "SELECT id, phone, name, COUNT(reserve_uid) FROM account LEFT JOIN reservation ON account.id = reservation.user_id ORDER BY id";
-$account_result = $con->query($sql);
-
-?>
 <html>
     <?php 
     $title = "관리자 페이지";
-    include("navbar.php");?>
+    include("navbar.php");
+    if ($_SESSION['user_id'] != "admin") {
+        echo "<script>alert(\"관리자 계정이 아닙니다.\");</script>";
+        echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+    }
+    include("connect.php");
+    $sql = "SELECT movies.movie_uid, movie_name, screen_date, screen_time, COUNT(valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid WHERE valid = 0";
+    $movie_result = $con->query($sql);
+    $sql = "SELECT id, phone, name, COUNT(reserve_uid) FROM account LEFT JOIN reservation ON account.id = reservation.user_id ORDER BY id";
+    $account_result = $con->query($sql);
+    
+    ?>
     <body>
     <div class="container">
         <h1 class="page-header">영화 관리</h1>
@@ -38,13 +36,13 @@ $account_result = $con->query($sql);
                     <td> <?php echo $row['screen_date'];?></td>
                     <td> <?php echo $row['screen_time'];?></td>
                     <td> <?php echo $row['theater_uid'];?></td>
-                    <td> <?php echo $row['COUNT(valid)'];?></td>
+                    <td> <?php echo $row['COUNT(valid)'];?>석</td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
         <button type="button" class="btn btn-primary pull-right" onclick="location.href='addmovie.php'">영화 추가</button>
-        <input type="submit" class="btn btn-danger pull-right" onclick="confirm()" value="영화 삭제"></input>
+        <input type="submit" class="btn btn-danger pull-right" onclick="confirm('정말로 삭제하시겠습니까?')" value="영화 삭제"></input>
         <hr>
 
         <h1 class="page-header">회원 관리</h1>

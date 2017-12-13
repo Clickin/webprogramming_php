@@ -26,6 +26,9 @@
             <a class="nav-link" href="./reservation.php">영화예매</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="./cancel.php">예매취소</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="./login.php">로그인</a>
         </li>
         <li class="nav-item">
