@@ -5,7 +5,7 @@ if ($_SESSION['user_id'] != "admin") {
     echo "<meta http-equiv='refresh' content='0;url=index.php'>";
 }
 include("connect.php");
-$sql = "SELECT movies.movie_uid, movie_name, screen_date, screen_time, COUNT(valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid ";
+$sql = "SELECT movies.movie_uid, movie_name, screen_date, screen_time, COUNT(valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid WHERE valid = 0";
 $movie_result = $con->query($sql);
 $sql = "SELECT id, phone, name, COUNT(reserve_uid) FROM account LEFT JOIN reservation ON account.id = reservation.user_id ORDER BY id";
 $account_result = $con->query($sql);
@@ -18,6 +18,7 @@ $account_result = $con->query($sql);
     <body>
     <div class="container">
         <h1 class="page-header">영화 관리</h1>
+        <form id="movies" method="post" action="deletemovie_ok.php">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -32,7 +33,7 @@ $account_result = $con->query($sql);
             <tbody>
                 <?php foreach ($movie_result as $row) : ?>
                 <tr>
-                    <td> <?php echo '<input type="checkbox" value="'. $row['movie_uid']. '">';?></td>
+                    <td> <?php echo '<input type="checkbox" name="del_list[]" value="'. $row['movie_uid']. '">';?></td>
                     <td> <?php echo $row['movie_name'];?></td>
                     <td> <?php echo $row['screen_date'];?></td>
                     <td> <?php echo $row['screen_time'];?></td>
@@ -43,7 +44,7 @@ $account_result = $con->query($sql);
             </tbody>
         </table>
         <button type="button" class="btn btn-primary pull-right" onclick="location.href='addmovie.php'">영화 추가</button>
-        <button type="button" class="btn btn-danger pull-right" onclick="del_movies()">영화 삭제</button>
+        <input type="submit" class="btn btn-danger pull-right" onclick="confirm()" value="영화 삭제"></input>
         <hr>
 
         <h1 class="page-header">회원 관리</h1>
@@ -75,3 +76,4 @@ $account_result = $con->query($sql);
     </div>
             
     </body>
+</html>
