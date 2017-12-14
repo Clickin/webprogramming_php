@@ -40,6 +40,55 @@ else {
 
 
 ?>
+
+<script>
+    var seat = [];
+    var post_obj = {
+        "movie_uid" : <?php echo $movie_uid ?>,
+        "seat" : seat,
+        "ticket" : <?php echo json_encode($cancel_result['ticket_uid']) ?>
+    }
+    function add(t){
+        document.getElementById(t).style.backgroundColor="lightyellow";
+        seat.push(t);
+        }
+	}
+
+    function post_to_url(path, params, method) {
+        method = method || "post"; // 전송 방식 기본값을 POST로
+    
+        
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+        
+        //히든으로 값을 주입시킨다.
+        for(var key in params) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+    
+            form.appendChild(hiddenField);
+        }
+    
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function display_seat(seat_uid) {
+        var arr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+        if (seat_uid % 13 < 9) {
+            return "".concat(arr[parseInt(seat_uid/13)], 0, (seat_uid % 13 + 1));
+        }
+        else {
+            return "".concat(arr[parseInt(seat_uid/13)], (seat_uid % 13 + 1));
+        }
+    }
+
+
+</script>
+
 <link rel="stylesheet" href="./css/screen.csss">
 <body>
 <div class="container">
@@ -80,18 +129,17 @@ else {
     <?php if(!empty($_GET)) { ?>
     <div class="col-md-6">
         <h1> <?php echo $cancel_result['movie_name']; ?><h1>
-        <img src="./pic/<?php echo $cancel_result['pic']; ?>" style="width:300px;height:370px;border:1px;">
         <div class="screen">screen</div>
-        <table border = 1 width = 300px class="seat">
+        <table border = 1 class="seat">
         <?php
             $uid = 0;
             for ($i = 0; $i < 12; $i++) {
-                echo "<tr><td>" .$list[$i] . "</td>";
+                echo "<tr><td style='background-color:white;'>" .$list[$i] . "</td>";
                 for ($j = 0; $j < 13; $j++) {
                     if (in_array($uid, $seat_reserved)) {
-                        echo "<td onclick=add($uid) style='background-color:red;'>$num[$j]</td>";
+                        echo "<td id='$uid' onclick=add($uid) style='background-color:red;'>$num[$j]</td>";
                     }
-                    else if (in_array($uid, $seat_occupied)) {
+                    else if (!empty($seat_occupied) && in_array($uid, $seat_occupied)) {
                         echo "<td style='background-color:gray;'>X</td>";
                     }
                     else {
@@ -102,6 +150,7 @@ else {
 
             }
         ?>
+        <a class="btn btn-danger" href="javascript:post_to_url('cancel_ok.php', post_obj)">취소하기</a>
     </div>
     <?php } ?>
     </div>
