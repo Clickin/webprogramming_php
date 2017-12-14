@@ -34,8 +34,8 @@ else {
         $_SESSION['is_logged'] = 'YES';
         $_SESSION['user_id'] = $id;
         mysqli_close($con);
-        echo '<meta http-equiv="refresh" content="0;url=./index.php">';
-        
+        echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+        exit();
     }
     else {
         $error = $con->error;
@@ -44,6 +44,5 @@ else {
 
 }
 echo "<script>alert('$error');</script>";
-echo "<script>history.back();</script>";
-exit;
+exit();
 ?>

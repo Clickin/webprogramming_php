@@ -19,6 +19,17 @@ if ($reserve_result === false) {
     echo "<script>alert('DB에러')</script>";
 }
 ?>
+
+<script>
+    function del_account(){
+        var r = confirm('정말로 탈퇴하시겠습니까?');
+        if (r == true) {
+            location.href='./resign.php';
+        }
+        
+    }
+
+</script>
 <body>
     <div class="container">
         <div class="row">
@@ -39,7 +50,7 @@ if ($reserve_result === false) {
                         <td><?php echo $account_result['phone']?></td>
                     </tr>
                 </table>
-                <a class="btn btn-danger" href="./resign.php" action="confirm('정말로 탈퇴하시겠습니까?')">회원탈퇴</a>
+                <input class="btn btn-danger" type="button" onclick="del_account();" value="회원탈퇴">
             </div>
             <hr>
             <div class="col-md-6">
