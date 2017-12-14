@@ -89,7 +89,7 @@
                 <h1>회원가입</h1>
             </div>
 
-            <form class="form" id="register" role="form" method="post" action="register_ok.php">
+            <form class="form" id="register" role="form" method="post" action="./register_ok.php">
                 <div class="form-group">
                     <label for="user_id">아이디</label>
                     <input class="form-control" name="user_id" id = "user_id" type="text" placeholder="아이디" required>

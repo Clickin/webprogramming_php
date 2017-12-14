@@ -12,8 +12,8 @@ $name = $_POST['name'];
 $day = $_POST['day'];
 $time = $_POST['time'];
 $theater = $_POST['theater'];
-$pic_name = basename($_FILES['pic']['name']);
-if (is_uploaded_file($_FILES['pic']['tmp_name'])) {
+$pic_name = $_FILES['pic']['name'];
+if (!is_uploaded_file($_FILES['pic']['tmp_name'])) {
     $error = "사진이 업로드되지 않았습니다.";
 
 }

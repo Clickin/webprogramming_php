@@ -17,7 +17,7 @@ if ($_SESSION['user_id'] != "admin") {
                 <h1>영화 추가</h1>
             </div>
 
-            <form class="form" id="addmovie" role="form" enctype="multipart/form-data" method="post" action="addmovie_ok.php">
+            <form class="form" id="addmovie" role="form" enctype="multipart/form-data" method="post" action="./addmovie_ok.php">
                 <div class="from-group">
                     <label for="name">영화이름</label>
                     <input class="form-control" name="name" type="text" placeholder="이름">
