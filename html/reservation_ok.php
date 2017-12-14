@@ -34,7 +34,7 @@ else {
         $sql = $sql. " VALUES ('$ticket_uid', '$date', '$id')";
         $con->query($sql) or die("Error : ". $con->error());
     }
-    echo "<script>alert('예매되었습니다');";
-    echo "<script>history.back();</script>";
+    echo "<script>alert('예매되었습니다');</script>";
+    echo "<meta http-equiv='refresh' content='0;url=reservation.php?movie_uid=$movie_uid'>";
 }
 echo "<script>alert('$error')";

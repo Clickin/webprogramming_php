@@ -9,27 +9,31 @@ if (empty($_SESSION)) {
 }
 $id = $_SESSION['user_id'];
 if (!empty($_GET)) {
-    $movie_uid = $_GET['movie_id'];
-    $sql = "SELECT T.seat_uid, T.ticket_uid, R.reserve_uid, M.movie_name, M.pic FROM tickets T, reservation R, movies M ";
-    $sql = $sql . "WHERE R.user_id = '$id' AND T.movie_uid = '$movie_uid' AND M.movie_uid = '$movie_uid'";
-    $cancel_result = $con->query($sql)->fetch_assoc() or die('Error :' . $con->error);
+    $movie_uid = $_GET['movie_uid'];
+    $sql = "SELECT T.seat_uid, T.ticket_uid, R.reserve_uid, M.movie_name FROM tickets T, reservation R, movies M WHERE R.user_id = '$id' AND T.movie_uid = '$movie_uid' AND M.movie_uid = '$movie_uid' AND R.ticket_uid = T.ticket_uid";
+    $cancel_result = $con->query($sql) or die('Error :' . $con->error);
     $sql = "SELECT seat_uid FROM seats WHERE movie_uid = '$movie_uid' AND valid = '1'";
     $seat_occupied = array();
     $seat_reserved = array();
+    $ticket = array();
     $list = array("A","B","C","D","E","F","G","H","I","J","K","L");
     $num = array("01","02","03","04","05","06","07","08","09","10","11","12","13");
-    while($row = $cancel_result) {
-        array_push($seat_reserved, $row['seat_uid']);
-    }
     
-    foreach ($con->query($sql)->fetch_assoc() as $row) {
+    foreach ($cancel_result as $row) {
+        array_push($seat_reserved, $row['seat_uid']);
+        array_push($ticket, $row['ticket_uid']);
+        $movie_name = $row['movie_name'];
+        
+    }
+        
+    foreach ($con->query($sql) as $row) {
         if (!in_array($row['seat_uid'], $seat_reserved)) {
             array_push($seat_occupied, $row['seat_uid']);
         }
     }
-    
 
 }
+
 else {
     $sql = "SELECT M.movie_uid, M.movie_name, M.screen_time, M.screen_date, T.theater_uid, R.reserved_date ";
     $sql = $sql . "FROM movies M, reservation R, tickets T ";
@@ -41,17 +45,18 @@ else {
 
 ?>
 
+<link rel="stylesheet" href="./css/screen.css">
 <script>
     var seat = [];
     var post_obj = {
         "movie_uid" : <?php echo $movie_uid ?>,
         "seat" : seat,
-        "ticket" : <?php echo json_encode($cancel_result['ticket_uid']) ?>
+        "ticket" : <?php echo json_encode($ticket) ?>
     }
     function add(t){
         document.getElementById(t).style.backgroundColor="lightyellow";
         seat.push(t);
-        }
+        
 	}
 
     function post_to_url(path, params, method) {
@@ -93,7 +98,7 @@ else {
 <body>
 <div class="container">
 <div class="row">
-    <?php if (empty($_GET)) {?>
+    <?php if (!isset($_GET['movie_uid'])) {?>
         <div class="col-md-6">
         <h1>예매 내역</h1>
         <form method="get" action="./cancel.php" role="form">
@@ -125,10 +130,10 @@ else {
         <input type="submit" class="btn btn-info pull-right" value="예매 취소">
         </form>
         </div>
-    <?php } ?>
-    <?php if(!empty($_GET)) { ?>
+    <?php } 
+    else { ?>
     <div class="col-md-6">
-        <h1> <?php echo $cancel_result['movie_name']; ?><h1>
+        <h1> <?php echo $movie_name ?><h1>
         <div class="screen">screen</div>
         <table border = 1 class="seat">
         <?php
@@ -150,6 +155,7 @@ else {
 
             }
         ?>
+        </table>
         <a class="btn btn-danger" href="javascript:post_to_url('cancel_ok.php', post_obj)">취소하기</a>
     </div>
     <?php } ?>
