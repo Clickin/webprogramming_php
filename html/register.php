@@ -115,6 +115,7 @@
                     <input class="form-control" name="phone" type="tel" placeholder="휴대전화" pattern="^\d{3}\d{3,4}\d{4}$" required>
                 </div>
                 
+                <iframe src="inner.html" width="100%"></iframe>
                 <div class="form-group">
                         <label for="agree">약관에 동의하시겠습니까?</label>
                         <input type="checkbox" name="agree" value="Yes" required>
