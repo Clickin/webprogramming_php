@@ -7,7 +7,7 @@
         echo "<meta http-equiv='refresh' content='0;url=index.php'>";
     }
     include("connect.php");
-    $sql = "SELECT movies.movie_uid, movie_name, screen_date, screen_time, COUNT(valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid WHERE valid = 0";
+    $sql = "SELECT movies.movie_uid, movie_name, screen_date, theater_uid, screen_time, COUNT(valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid WHERE valid = 0";
     $movie_result = $con->query($sql);
     $sql = "SELECT id, phone, name, COUNT(reserve_uid) FROM account LEFT JOIN reservation ON account.id = reservation.user_id ORDER BY id";
     $account_result = $con->query($sql);

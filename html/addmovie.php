@@ -44,9 +44,9 @@ if ($_SESSION['user_id'] != "admin") {
                     </select> 
                 </div>
                 
-                <div class="form-group">
-                        <label for="picture">영화 사진</label>
-                        <input type="text" name="pic" placeholder="웹에 업로드 후 링크를 걸어주세요">
+                <div class="from-group">
+                    <label for="pic">영화사진</label>
+                    <input class="form-control" name="pic" type="text" placeholder="웹에 업로드 후 링크를 적어주세요">
                 </div>
 
                 <div>
