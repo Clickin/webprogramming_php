@@ -9,7 +9,7 @@ if(!$con){
     echo "not connect DB";
 }
  
-$sql = "SELECT * FROM account WHERE id = $idch";
+$sql = "SELECT * FROM account WHERE id = '$idch'";
 $result = $con->query($sql);
 $count = $result->num_rows;
 
@@ -27,6 +27,7 @@ else {
     
     echo '<div style="color:red" id="idch">이미 존재하는 아이디입니다<input type="hidden" value="0" id="use"></div>';
     }
+    $con->close();
 }
 $error = mysqli_error;
 echo '<script>console.log($erro")</script>';
