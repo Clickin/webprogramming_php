@@ -30,5 +30,5 @@ else {
     $con->close();
 }
 $error = mysqli_error;
-echo '<script>console.log($erro")</script>';
+echo "<script>console.log('$error')</script>";
 ?>
