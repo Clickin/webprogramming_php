@@ -9,7 +9,7 @@
     include("connect.php");
     $sql = "SELECT movies.movie_uid, movie_name, screen_date, theater_uid, screen_time, COUNT(seats.valid) FROM movies LEFT JOIN seats ON seats.movie_uid = movies.movie_uid WHERE seats.valid = 0 GROUP BY movies.movie_uid";
     $movie_result = $con->query($sql);
-    $sql = "SELECT id, phone, name, COUNT(reserve_uid) FROM account LEFT JOIN reservation ON account.id = reservation.user_id ORDER BY id";
+    $sql = "SELECT id, phone, name, COUNT(reserve_uid) FROM account LEFT JOIN reservation ON account.id = reservation.user_id GROUP BY id";
     $account_result = $con->query($sql);
     
     ?>
