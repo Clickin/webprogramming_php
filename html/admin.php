@@ -36,7 +36,7 @@
                     <td> <?php echo $row['screen_date'];?></td>
                     <td> <?php echo $row['screen_time'];?></td>
                     <td> <?php echo $row['theater_uid'];?></td>
-                    <td> <?php echo $row['COUNT(valid)'];?>석</td>
+                    <td> <?php echo $row['COUNT(seats.valid)'];?>석</td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

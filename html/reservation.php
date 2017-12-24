@@ -47,6 +47,12 @@ else {
         if(seat.length>=max) {
             alert("예약 가능 좌석을 모두 선택했습니다 max:"+max); 
         }
+        else if (seat.includes(t)) {
+            var seat_text = document.getElementById("target");
+            seat_text.innerHTML.replace(display_seat(t), "");
+            document.getElementById(t).style.backgroundColor="lightyellow";
+            seat.pop(t);
+        }
         else {
             document.getElementById("target").appendChild(text);
             document.getElementById(t).style.backgroundColor="red";
