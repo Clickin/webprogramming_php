@@ -42,7 +42,8 @@ if (!empty($result)) {
     } else {
         $error = "파일 업로드 실패";
     }
-    exit;
+    echo "<script>history.back();</script>";
+    exit();
 }
 else {
     $error = "DB에 연결하지 못했습니다.";
